@@ -90,7 +90,7 @@ double IntList::average() const {
         return 0.0;
     }
 
-    return sum() / count();
+    return double(sum()) / count();
 }
 
 // inserts value as new node at beginning of list
@@ -146,6 +146,15 @@ int IntList::count() const {
 //Assignment operator should copy the list from the source
 //to this list, deleting/replacing any existing nodes
 IntList& IntList::operator=(const IntList& source){
+    Node* temp = head;
+    Node* toDelete = head;
+
+    while(temp!=nullptr){
+        toDelete = temp;
+        temp = temp->next;
+        delete toDelete;
+    }
+
     this->head = nullptr;
     this->tail = nullptr;
     
